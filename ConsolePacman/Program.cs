@@ -22,7 +22,7 @@ namespace ConsolePacman
 
             //Initialize character - khởi tạo nhân vật
             Pacman pacman = new Pacman(Character.WIDTH, Character.HEIGHT, Color.Yellow, new Point(25, 25));
-            Monster redMonster = new Monster(Character.WIDTH, Character.HEIGHT, Color.Red, new Point(40, 10));
+            Monster redMonster = new Monster(Character.WIDTH, Character.HEIGHT, Color.Red, new Point(25, 10));
 
             //Init fruit list - khởi tạo list trái cây
             List<Fruit> listFruit = new List<Fruit>();
@@ -31,7 +31,7 @@ namespace ConsolePacman
 
             Console.WriteLine("Bắt đầu Game Pacman...");
             Console.WriteLine("Nhập mũi tên lên - xuống - trái - phải để điều khiển Pacman \n");
-            DisplayInfo(pacman, redMonster,ref totalPoint);
+            DisplayInfo(pacman, redMonster, ref totalPoint);
             
             while (pacman.Life <= Pacman.MAXLIFE)
             {
@@ -61,7 +61,7 @@ namespace ConsolePacman
                 redMonster.Move(Direction.Down);
 
                 CheckStep(pacman, redMonster, listFruit,ref totalPoint);
-                DisplayInfo(pacman, redMonster,ref totalPoint);
+                DisplayInfo(pacman, redMonster, ref totalPoint);
 
                 //Exit game
                 if (pacman.Life <= 0)
@@ -75,7 +75,7 @@ namespace ConsolePacman
             Console.ReadLine();
         }
 
-        private static void CheckStep(Pacman pacman, Monster monster, List<Fruit> listFruit,ref int totalPoint)
+        private static void CheckStep(Pacman pacman, Monster monster, List<Fruit> listFruit, ref int totalPoint)
         {
             if (pacman.CheckCollisionCharacter(monster))
             {
@@ -84,6 +84,7 @@ namespace ConsolePacman
             }
             else
             {
+                //Lấy danh sách những Fruit chưa được ăn
                 List<Fruit> listFruitNotEat = listFruit.Where(f => f.Eaten == false).ToList();
 
                 foreach (var fruit in listFruitNotEat)
@@ -99,7 +100,7 @@ namespace ConsolePacman
             }
         }
 
-        private static void DisplayInfo(Pacman pacman, Monster monster,ref int totalPoint)
+        private static void DisplayInfo(Pacman pacman, Monster monster, ref int totalPoint)
         {
             Console.WriteLine("--------------------------");
             Console.WriteLine(pacman.Information);

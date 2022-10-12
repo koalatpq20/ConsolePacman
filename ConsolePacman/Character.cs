@@ -74,13 +74,20 @@ namespace ConsolePacman
         /// <returns>boolean đúng sai</returns>
         public bool CheckCollisionCharacter(Character character)
         {
-            //TODO: kiểm tra va chạm theo các hướng Up - Down - Right - Left
+            //Kiểm tra va chạm theo các hướng Up - Down - Right - Left            
+            int spaceX = Convert.ToInt32(Math.Abs(character.Location.X - Location.X));
+            int spaceY = Convert.ToInt32(Math.Abs(character.Location.Y - Location.Y));
 
-            // Kiểm tra va chạm đơn giản  - 2 tọa độ trùng nhau
-            if (Location.X == character.Location.X && Location.Y == character.Location.Y)
+            if ((spaceX < character.Width || spaceX < Width) && (spaceY < character.Height || spaceY < Height))
                 return true;
             else
                 return false;
+
+            // Kiểm tra va chạm đơn giản  - 2 tọa độ trùng nhau
+            //if (Location.X == character.Location.X && Location.Y == character.Location.Y)
+            //    return true;
+            //else
+            //    return false;
         }
 
         /// <summary>
@@ -91,6 +98,7 @@ namespace ConsolePacman
         public bool CheckCollisionFruit(Fruit fruit)
         {
             //TODO: kiểm tra va chạm theo các hướng Up - Down - Right - Left
+            
 
             // Kiểm tra va chạm đơn giản  - 2 tọa độ trùng nhau
             if (Location.X == fruit.Location.X && Location.Y == fruit.Location.Y)
